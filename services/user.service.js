@@ -2,7 +2,7 @@ const boom = require('@hapi/boom');
 
 
 // const getConnection = require('../libs/postgres')
-const pool = require('../libs/postgres.pool');
+// const pool = require('../libs/postgres.pool');
 const sequelize = require('../libs/sequelize')
 
 
@@ -20,6 +20,7 @@ class UserService {
     const query = 'SELECT * FROM tasks';
     // const rta = await client.query('SELECT * FROM tasks');
     const [data] = await sequelize.query(query);
+
     return data;
 
 
