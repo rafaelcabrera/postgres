@@ -23,17 +23,22 @@ class UserService {
   }
 
   async findOne(id) {
-    return { id };
+    const user = await models.User.findByPk(id);
+    if(!user){
+      throw boom.notFound('usuario not foundeado');
+    }
+    return user;
   }
 
   async update(id, changes) {
-    return {
-      id,
-      changes,
-    };
+    const user = await this.findOne(id);
+    const rta = await user.update(changes);
+    return rta;
   }
 
   async delete(id) {
+    const user = await models.User.findByPk(id);
+    await user.destroy();
     return { id };
   }
 }
